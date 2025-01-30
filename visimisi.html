@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visi Misi Desa Sidodadi</title>
+    <link rel="shortcut icon" href="img/sidodadi.png" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0b6e4f;
+            --secondary-color: #2ecc71;
+            --background-color: #f0f4f8;
+            --text-color: #2c3e50;
+            --card-background: rgba(255, 255, 255, 0.1);
+            --shadow-color: rgba(0,0,0,0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            color: white;
+        }
+
+        .background-slider {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .back-home {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-home:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.1) rotate(360deg);
+        }
+
+        .back-home i {
+            font-size: 24px;
+        }
+
+        .visi-misi-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .visi-misi-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .visi-misi-header h1 {
+            color: white;
+            font-size: 3.5rem;
+            font-weight: 700;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: slideDown 1s forwards;
+        }
+
+        .visi-misi-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            animation: lineGrow 1s 1s forwards;
+        }
+
+        .visi-card {
+            background: var(--card-background);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 4rem;
+            box-shadow: 0 15px 35px var(--shadow-color);
+            max-width: 900px;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: scaleIn 0.8s 1.5s forwards;
+        }
+
+        .visi-text {
+            font-size: 1.8rem;
+            line-height: 1.8;
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s 2s forwards;
+            letter-spacing: 0.5px;
+            word-spacing: 2px;
+            padding: 0 1rem;
+        }
+
+        @keyframes slideDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes lineGrow {
+            to {
+                width: 120px;
+            }
+        }
+
+        @keyframes scaleIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .visi-card {
+                padding: 3rem;
+                margin: 0 2rem;
+            }
+
+            .visi-text {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .visi-misi-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .visi-card {
+                padding: 2.5rem;
+                margin: 0 1.5rem;
+            }
+
+            .visi-text {
+                font-size: 1.4rem;
+                line-height: 1.7;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .visi-misi-container {
+                padding: 1rem;
+            }
+
+            .visi-misi-header h1 {
+                font-size: 2rem;
+            }
+
+            .visi-card {
+                padding: 2rem;
+                margin: 0 1rem;
+            }
+
+            .visi-text {
+                font-size: 1.2rem;
+                line-height: 1.6;
+                letter-spacing: 0.3px;
+                word-spacing: 1px;
+            }
+
+            .back-home {
+                top: 1rem;
+                left: 1rem;
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-slider">
+       
+    </div>
+
+    <a href="index.html#home" class="back-home">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <div class="visi-misi-container">
+        <div class="visi-misi-header">
+            <h1>Visi & Misi Desa Sidodadi</h1>
+        </div>
+        
+        <div class="visi-card">
+            <p class="visi-text">
+                " Mewujudkan gotong royong membangun kampung sidodadi yang berbudaya beradat aman nyaman serta berdaya saing dengan berbasis pada sumber daya lokal dan kearifan lokal. "
+            </p>
+        </div>
+    </div>
+
+    <script>
+        
+        const backgrounds = [
+            'img/bg3.jpg',
+            'img/bg2.jpg',
+            'img/bg1.jpg',
+            'img/bg4.jpg'
+        ];
+
+        const slider = document.querySelector('.background-slider');
+        backgrounds.forEach((bg, index) => {
+            const slide = document.createElement('div');
+            slide.className = `slide ${index === 0 ? 'active' : ''}`;
+            slide.style.backgroundImage = `url(${bg})`;
+            
+            const overlay = document.createElement('div');
+            overlay.className = 'overlay';
+            
+            slide.appendChild(overlay);
+            slider.appendChild(slide);
+        });
+
+        let currentSlide = 0;
+        function nextSlide() {
+            const slides = document.querySelectorAll('.slide');
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+</html>
